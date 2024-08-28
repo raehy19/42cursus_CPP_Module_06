@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 
-NAME := ex00
+NAME := convert
 
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98 -MMD -MP

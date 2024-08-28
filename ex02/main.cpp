@@ -20,7 +20,7 @@
  */
 int main() {
 	/// Seed the random number generator
-	std::srand(static_cast<unsigned int>(std::time(0)));
+	std::srand(std::time(0));
 
 	/// Generate a random object
 	Base* obj = generate();
