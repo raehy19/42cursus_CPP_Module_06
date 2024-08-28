@@ -31,7 +31,7 @@ ScalarConverter::~ScalarConverter() {}
  */
 void ScalarConverter::convert(const std::string& literal) {
 	/// Initialize value as double
-	double value = 0.0;
+	double value = 0.0f;
 
 	/// Check if the literal is a char type
 	if (isCharLiteral(literal)) {
@@ -41,12 +41,12 @@ void ScalarConverter::convert(const std::string& literal) {
 		/// Check if the literal is an int type
 	else if (isIntLiteral(literal)) {
 		/// Convert string to long and assign to value
-		value = std::strtol(literal.c_str(), NULL, 10);
+		value = static_cast<double>(std::strtol(literal.c_str(), NULL, 10));
 	}
 		/// Check if the literal is a float type
 	else if (isFloatLiteral(literal)) {
-		/// Convert string to float
-		std::strtof(literal.c_str(), NULL);
+		/// Convert string to float and cast to double
+		value = static_cast<double>(std::strtof(literal.c_str(), NULL));
 	}
 		/// Check if the literal is a double type
 	else if (isDoubleLiteral(literal)) {
