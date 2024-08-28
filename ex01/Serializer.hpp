@@ -20,9 +20,11 @@
  * @brief The Data structure contains the data to be serialized and deserialized.
  */
 struct Data {
-	int         n;        ///< Example integer data
-	std::string str;      ///< Example string data
+	std::string name;
+	int age;
+	double salary;
 };
+
 
 /**
  * @brief The Serializer class provides functionality to serialize and deserialize
