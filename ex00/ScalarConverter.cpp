@@ -11,6 +11,34 @@
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include <cmath>
+
+/**
+ * @brief Checks if a given value is NaN (Not a Number).
+ *
+ * In IEEE 754, NaN is a special value representing undefined results.
+ * NaN is unique because it is not equal to itself.
+ *
+ * @param value The double to check.
+ * @return True if the value is NaN, false otherwise.
+ */
+bool isnan_cpp98(double value) {
+	// NaN is not equal to itself, so this checks if the value is NaN.
+	return value != value;
+}
+
+/**
+ * @brief Checks if a given value is infinite (positive or negative).
+ *
+ * In IEEE 754, infinity represents values that exceed finite numbers.
+ *
+ * @param value The double to check.
+ * @return True if the value is infinite, false otherwise.
+ */
+bool isinf_cpp98(double value) {
+	// Checks if the value is either positive or negative infinity.
+	return value == std::numeric_limits<double>::infinity() || value == -std::numeric_limits<double>::infinity();
+}
 
 /**
  * @brief Default constructor.
@@ -81,7 +109,7 @@ void ScalarConverter::convertToChar(double value) {
 	std::cout << "char: ";
 
 	/// Check if the value is out of char range or NaN
-	if (value < std::numeric_limits<char>::min() || value > std::numeric_limits<char>::max() || std::isnan(value)) {
+	if (value < std::numeric_limits<char>::min() || value > std::numeric_limits<char>::max() || isnan_cpp98(value)) {
 		/// Print "impossible" if conversion is not possible
 		std::cout << "impossible" << std::endl;
 	}
@@ -107,7 +135,7 @@ void ScalarConverter::convertToInt(double value) {
 	std::cout << "int: ";
 
 	/// Check if the value is out of int range or NaN
-	if (value < std::numeric_limits<int>::min() || value > std::numeric_limits<int>::max() || std::isnan(value)) {
+	if (value < std::numeric_limits<int>::min() || value > std::numeric_limits<int>::max() || isnan_cpp98(value)) {
 		/// Print "impossible" if conversion is not possible
 		std::cout << "impossible" << std::endl;
 	}
@@ -128,12 +156,12 @@ void ScalarConverter::convertToFloat(double value) {
 	std::cout << "float: ";
 
 	/// Check if the value is NaN
-	if (std::isnan(value)) {
+	if (isnan_cpp98(value)) {
 		/// Print "nanf" if value is NaN
 		std::cout << "nanf" << std::endl;
 	}
 		/// Check if the value is infinity
-	else if (std::isinf(value)) {
+	else if (isinf_cpp98(value)) {
 		/// Print "+inff" or "-inff" based on the sign
 		std::cout << (value < 0 ? "-inff" : "+inff") << std::endl;
 	}
@@ -154,12 +182,12 @@ void ScalarConverter::convertToDouble(double value) {
 	std::cout << "double: ";
 
 	/// Check if the value is NaN
-	if (std::isnan(value)) {
+	if (isnan_cpp98(value)) {
 		/// Print "nan" if value is NaN
 		std::cout << "nan" << std::endl;
 	}
 		/// Check if the value is infinity
-	else if (std::isinf(value)) {
+	else if (isinf_cpp98(value)) {
 		/// Print "+inf" or "-inf" based on the sign
 		std::cout << (value < 0 ? "-inf" : "+inf") << std::endl;
 	}
